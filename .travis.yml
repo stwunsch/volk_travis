@@ -23,9 +23,7 @@ script:
     - CPU_CORES=$(grep -c ^processor /proc/cpuinfo) && echo 'Numer of CPU cores available:' $CPU_CORES
     - make -j $CPU_CORES
     # Test
-    - ctest
-    # Install
-    - make install
+    - ctest -V
 
 notifications:
     email: false
