@@ -1,0 +1,32 @@
+language: cpp
+os: linux
+sudo: required
+dist: trusty
+
+before_install:
+    # Install packages with apt-get
+    - sudo apt-get -qq update
+    - sudo apt-get -y install git-core cmake g++ python-dev
+    # Because we are running with a virtualenv, install python packages via pip.
+    # Otherwise, they won't show up later on. See here:
+    # https://docs.travis-ci.com/user/languages/python
+    - pip install --upgrade pip
+    - pip install cheetah
+
+install:
+    # Install PyQt4 from source
+
+script:
+    # Build
+    - mkdir build/ && cd build/
+    - cmake ..
+    - CPU_CORES=$(grep -c ^processor /proc/cpuinfo) && echo 'Numer of CPU cores available:' $CPU_CORES
+    - make -j $CPU_CORES
+    # Test
+    - ctest
+    # Install
+    # FIXME Do we need this?
+    - make install
+
+notifications:
+    email: false
