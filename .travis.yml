@@ -25,7 +25,6 @@ script:
     # Test
     - ctest
     # Install
-    # FIXME Do we need this?
     - make install
 
 notifications:
