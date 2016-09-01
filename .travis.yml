@@ -6,7 +6,7 @@ dist: trusty
 before_install:
     # Install packages with apt-get
     - sudo apt-get -qq update
-    - sudo apt-get -y install git-core cmake g++ python-dev
+    - sudo apt-get -y install git-core cmake g++ python-dev libboost1.55-all-dev
     # Because we are running with a virtualenv, install python packages via pip.
     # Otherwise, they won't show up later on. See here:
     # https://docs.travis-ci.com/user/languages/python
